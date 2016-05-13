@@ -131,8 +131,9 @@ public class BigQueryConnector {
     }
     
     public static void main(String[] args) {
-        String datasetName = "package_downloads";
-        String tableName = "google_package_downloads";
+        String datasetName = Constants.BQ_DATASET_NAME;
+        String tableName = String.format(Constants.BQ_TABLE_NAME, "google");
+        
         BigQueryConnector bq = BigQueryConnector.getInstance();
         bq.createDataset(datasetName);
         bq.createTable(datasetName, tableName);

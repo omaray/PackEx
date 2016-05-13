@@ -1,0 +1,20 @@
+[
+    {
+        "company": "google",
+        "packages":
+        [
+            {"language": "node", "category": "cloud", "name": "gcloud"},
+            {"language": "ruby", "category": "cloud", "name": "gcloud"},
+            {"language": "php", "category": "cloud", "name": "google/cloud"}
+        ]
+    },
+    {
+        "company": "aws",
+        "packages":
+        [
+            {"language": "node", "category": "cloud", "name": "aws-sdk"},
+            {"language": "ruby", "category": "cloud", "name": "aws-sdk"},
+            {"language": "php", "category": "cloud", "name": "aws/aws-sdk-php"}
+        ]
+    }
+ ]

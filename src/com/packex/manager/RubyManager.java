@@ -10,7 +10,7 @@ import com.packex.connector.BigQueryConnector;
 import com.packex.loader.RubyLoader;
 import com.packex.model.pkgmgr.RubyDownloadData;
 
-public class RubyManager {
+public class RubyManager implements LanguageManager {
     private String company;
     private String packageName;
     private String category;

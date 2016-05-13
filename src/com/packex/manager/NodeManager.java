@@ -10,7 +10,7 @@ import com.packex.connector.BigQueryConnector;
 import com.packex.loader.NodeLoader;
 import com.packex.model.pkgmgr.NodeDownloadData;
 
-public class NodeManager {
+public class NodeManager implements LanguageManager {
     private String company;
     private String packageName;
     private String category;

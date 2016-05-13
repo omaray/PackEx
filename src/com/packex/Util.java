@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public class Util {
 
+    private static boolean IS_TESTING = false;
     private static final Logger logger = Logger.getLogger(Util.class.getName());
     
     // Read the content from the specified file
@@ -52,5 +53,13 @@ public class Util {
         } catch(IOException ex) {
             logger.log(Level.SEVERE, "Error writing to the file" + fileName, ex);
         }
+    }
+    
+    public static String getDatasetName() {
+        return Util.IS_TESTING ? "" : Constants.BQ_DATASET_NAME;
+    }
+    
+    public static String getTableName(String companyName) {
+        return Util.IS_TESTING ? "" : String.format(Constants.BQ_TABLE_NAME, companyName);
     }
 }

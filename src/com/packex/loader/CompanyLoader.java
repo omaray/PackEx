@@ -12,17 +12,24 @@ import com.packex.model.company.PackageInfo;
 
 
 public class CompanyLoader {
-    public LinkedList<CompanyPackages> loadData() {
+    private LinkedList<CompanyPackages> companyData;
+    
+    public void load() {
         Gson gson = new Gson();
         String packagesInJson= Util.readFromFile(Constants.PACKAGES_FILE_PATH);
         CompanyPackages[] companyPackages = gson.fromJson(packagesInJson, CompanyPackages[].class);
         
-        return new LinkedList<CompanyPackages>(Arrays.asList(companyPackages));
+        this.companyData = new LinkedList<CompanyPackages>(Arrays.asList(companyPackages));
+    }
+    
+    public LinkedList<CompanyPackages> getCompanyData() {
+        return this.companyData;
     }
     
     public static void main(String[] args) {
         CompanyLoader companyLoader= new CompanyLoader();
-        LinkedList<CompanyPackages> companyPackagesList = companyLoader.loadData();
+        companyLoader.load();
+        LinkedList<CompanyPackages> companyPackagesList = companyLoader.getCompanyData(); 
         
         for (CompanyPackages companyPackages : companyPackagesList) {
             System.out.println(companyPackages.getCompany());

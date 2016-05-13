@@ -10,7 +10,7 @@ import com.packex.connector.BigQueryConnector;
 import com.packex.loader.PhpLoader;
 import com.packex.model.pkgmgr.PhpDownloadData;
 
-public class PhpManager {
+public class PhpManager implements LanguageManager{
     private String company;
     private String packageName;
     private String category;

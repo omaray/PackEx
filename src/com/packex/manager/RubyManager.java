@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
 import com.packex.connector.BigQueryConnector;
 import com.packex.loader.RubyLoader;
 import com.packex.model.pkgmgr.RubyDownloadData;
@@ -14,13 +15,15 @@ public class RubyManager implements LanguageManager {
     private String company;
     private String packageName;
     private String category;
+    private String datasetName;
     private String tableName;
     
     public RubyManager(String company, String packageName, String category) {
         this.company = company;
         this.packageName = packageName;
         this.category = category;
-        this.tableName = String.format(Constants.BQ_TABLE_NAME, this.company);
+        this.datasetName = Util.getDatasetName();
+        this.tableName = Util.getTableName(this.company);
     }
     
     public void saveData() {
@@ -28,7 +31,7 @@ public class RubyManager implements LanguageManager {
         loader.load();
         
         BigQueryConnector connector = BigQueryConnector.getInstance();
-        connector.begin(Constants.BQ_DATASET_NAME, this.tableName);
+        connector.begin(this.datasetName, this.tableName);
         
         Map<String, Object> row = new HashMap<String, Object>();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");

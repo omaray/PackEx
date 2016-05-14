@@ -19,6 +19,7 @@ import com.google.cloud.bigquery.Table;
 import com.google.cloud.bigquery.TableId;
 import com.google.cloud.bigquery.TableInfo;
 import com.packex.Constants;
+import com.packex.Util;
 import com.google.cloud.bigquery.InsertAllRequest.Builder;
 
 public class BigQueryConnector {
@@ -131,8 +132,8 @@ public class BigQueryConnector {
     }
     
     public static void main(String[] args) {
-        String datasetName = Constants.BQ_DATASET_NAME;
-        String tableName = String.format(Constants.BQ_TABLE_NAME, "google");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("google");
         
         BigQueryConnector bq = BigQueryConnector.getInstance();
         bq.createDataset(datasetName);

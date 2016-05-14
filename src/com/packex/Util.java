@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class Util {
 
-    private static boolean IS_TESTING = false;
+    private static boolean IS_TESTING = true;
     private static final Logger logger = Logger.getLogger(Util.class.getName());
     
     // Read the content from the specified file
@@ -56,10 +56,12 @@ public class Util {
     }
     
     public static String getDatasetName() {
-        return Util.IS_TESTING ? "" : Constants.BQ_DATASET_NAME;
+        return Util.IS_TESTING ? Constants.BQ_DATASET_TEST_NAME : Constants.BQ_DATASET_NAME;
     }
     
     public static String getTableName(String companyName) {
-        return Util.IS_TESTING ? "" : String.format(Constants.BQ_TABLE_NAME, companyName);
+        return Util.IS_TESTING 
+                ? String.format(Constants.BQ_TABLE_TEST_NAME, companyName) 
+                : String.format(Constants.BQ_TABLE_NAME, companyName);
     }
 }

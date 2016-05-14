@@ -20,6 +20,8 @@ public class Constants {
     // BigQuery constants
     public static final String BQ_DATASET_NAME = "package_downloads";
     public static final String BQ_TABLE_NAME = "%s_data";
+    public static final String BQ_DATASET_TEST_NAME = "package_downloads_test";
+    public static final String BQ_TABLE_TEST_NAME = "%s_data_test";
     public static final String NEW_DAY_TIME = " 00:00:00";
     public static final String ALL_VERSIONS = "all";
     

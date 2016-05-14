@@ -13,6 +13,7 @@ public class Constants {
     public static final String RUBY_URL_TEMPLATE = "https://rubygems.org/api/v1/gems/%s.json";
     public static final String PHP_URL_TEMPLATE = "https://packagist.org/packages/%s.json";
     public static final String PYTHON_URL_TEMPLATE = "https://pypi.python.org/pypi/%s/json";
+    public static final String PYTHON_SITE_URL_TEMPLATE = "https://pypi.python.org/pypi/%s";
     public static final String NODE_DAY_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-day/%s";
     public static final String NODE_WEEK_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-week/%s";
     public static final String NODE_MONTH_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-month/%s";

@@ -62,12 +62,12 @@ public class PythonLoader {
         }
     }
     
-    PythonDownloadData getDownloadData() {
+    public PythonDownloadData getDownloadData() {
         return this.data;
     }
     
     public static void main(String[] args) {
-        PythonLoader loader = new PythonLoader("gcloud");
+        PythonLoader loader = new PythonLoader("azure-nspkg");
         loader.loadFromHtml();
         PythonDownloadData data = loader.getDownloadData();
         

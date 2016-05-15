@@ -30,7 +30,7 @@ public class PhpLoader {
     }
     
     public static void main(String[] args) {
-        PhpLoader loader = new PhpLoader("microsoft/windowsazure");
+        PhpLoader loader = new PhpLoader("google/apiclient");
         loader.load();
         PhpDownloadData data = loader.getDownloadData();
         

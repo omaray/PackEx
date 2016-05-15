@@ -67,7 +67,7 @@ public class PythonLoader {
     }
     
     public static void main(String[] args) {
-        PythonLoader loader = new PythonLoader("boto3");
+        PythonLoader loader = new PythonLoader("google-api-python-client");
         loader.loadFromHtml();
         PythonDownloadData data = loader.getDownloadData();
         

@@ -48,7 +48,7 @@ public class NodeLoader {
     }
     
     public static void main(String[] args) {
-        NodeLoader loader = new NodeLoader("azure-storage");
+        NodeLoader loader = new NodeLoader("googleapis");
         loader.load();
         
         NodeDownloadData dayData = loader.getDayDownloadData();

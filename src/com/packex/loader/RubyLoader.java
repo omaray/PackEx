@@ -28,7 +28,7 @@ public class RubyLoader {
     }
     
     public static void main(String[] args) {
-        RubyLoader loader = new RubyLoader("aws-sdk-v1");
+        RubyLoader loader = new RubyLoader("google-api-client");
         loader.load();
         RubyDownloadData data = loader.getDownloadData(); 
         

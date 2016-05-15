@@ -1,18 +1,14 @@
 package com.packex.loader;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.FieldNamingPolicy;
 import com.packex.Constants;
 import com.packex.connector.HttpConnector;
@@ -20,19 +16,39 @@ import com.packex.model.pkgmgr.PythonDownloadData;
 import com.packex.model.pkgmgr.PythonRawData;
 import com.packex.model.pkgmgr.PythonRelease;
 import com.packex.model.pkgmgr.PythonReleaseList;
+import com.packex.parser.PythonHtmlParser;
+import com.packex.parser.ReleaseDeserializer;
+import com.packex.parser.ReleaseListDeserializer;
 
 public class PythonLoader {
+    private static final Logger logger = Logger.getLogger(PythonLoader.class.getName());
+    
     private String packageName;
-    private String url;
+    private String urlJson;
+    private String urlHtml;
+    private PythonDownloadData data;
     
     public PythonLoader(String packageName) {
         this.packageName = packageName;
-        this.url = String.format(Constants.PYTHON_URL_TEMPLATE, this.packageName);
+        this.urlJson = String.format(Constants.PYTHON_URL_TEMPLATE, this.packageName);
+        this.urlHtml = String.format(Constants.PYTHON_HTML_URL_TEMPLATE, this.packageName);
     }
     
+    public void loadFromHtml() {
+        try {
+            Document document = Jsoup.connect(this.urlHtml).get();
+            
+            PythonHtmlParser parser = new PythonHtmlParser(this.packageName);
+            this.data = parser.parse(document);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, String.format("Couldn't connect to %s using Jsoup", this.urlHtml), ex);
+        }
+    }
+    
+    // INCOMPLETE IMPLEMENTATION SINCE PYPI IS BROKEN
     public void load() {
         HttpConnector connector = HttpConnector.getInstance();
-        String response = connector.get(this.url);
+        String response = connector.get(this.urlJson);
         
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(PythonReleaseList.class, new ReleaseListDeserializer());
@@ -46,44 +62,17 @@ public class PythonLoader {
         }
     }
     
-    public static class ReleaseListDeserializer implements JsonDeserializer<PythonReleaseList> {
-
-        @Override
-        public PythonReleaseList deserialize(
-                JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
-            
-            JsonObject jsonObject = jsonElement.getAsJsonObject();
-            List<PythonRelease> releases = new ArrayList<PythonRelease>();
-            for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-                PythonRelease pythonRelease = context.deserialize(entry.getValue(), PythonRelease.class);
-                System.out.println(entry.getKey().toString());
-                pythonRelease.setVersion(entry.getKey().toString());
-                releases.add(pythonRelease);
-            }
-            
-            return new PythonReleaseList(releases);
-        }
-    }
-    
-    public static class ReleaseDeserializer implements JsonDeserializer<PythonRelease> {
-
-        @Override
-        public PythonRelease deserialize(
-                JsonElement jsonElement, Type type, JsonDeserializationContext context) throws JsonParseException {
-            
-            JsonArray jsonArray = jsonElement.getAsJsonArray();
-            List<PythonDownloadData> downloadDataList = new ArrayList<PythonDownloadData>();
-            for (JsonElement entry : jsonArray) {
-                PythonDownloadData data = context.deserialize(entry, PythonDownloadData.class);
-                downloadDataList.add(data);
-            }
-            
-            return new PythonRelease(downloadDataList);
-        }
+    PythonDownloadData getDownloadData() {
+        return this.data;
     }
     
     public static void main(String[] args) {
         PythonLoader loader = new PythonLoader("gcloud");
-        loader.load();
+        loader.loadFromHtml();
+        PythonDownloadData data = loader.getDownloadData();
+        
+        System.out.println(data.getDayDownloads());
+        System.out.println(data.getWeekDownloads());
+        System.out.println(data.getMonthDownloads());
     }
 }

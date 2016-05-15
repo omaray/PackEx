@@ -8,15 +8,23 @@ public class Constants {
     public static final String RUBY_LANGUAGE = "RUBY";
     public static final String NODE_LANGUAGE = "NODE";
     public static final String PHP_LANGUAGE = "PHP";
+    public static final String PYTHON_LANGUAGE = "PYTHON";
     
     // Package management URL sites
     public static final String RUBY_URL_TEMPLATE = "https://rubygems.org/api/v1/gems/%s.json";
     public static final String PHP_URL_TEMPLATE = "https://packagist.org/packages/%s.json";
     public static final String PYTHON_URL_TEMPLATE = "https://pypi.python.org/pypi/%s/json";
-    public static final String PYTHON_SITE_URL_TEMPLATE = "https://pypi.python.org/pypi/%s";
+    public static final String PYTHON_HTML_URL_TEMPLATE = "https://pypi.python.org/pypi/%s";
     public static final String NODE_DAY_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-day/%s";
     public static final String NODE_WEEK_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-week/%s";
     public static final String NODE_MONTH_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-month/%s";
+    
+    // Python html constants
+    public static final String PYTHON_CLASS_SEARCH = "nodot";
+    public static final String PYTHON_DOWNLOADS_TEXT = "Downloads (All Versions):";
+    public static final String PYTHON_DOWNLOADS_LAST_DAY = "downloads in the last day";
+    public static final String PYTHON_DOWNLOADS_LAST_WEEK = "downloads in the last week";
+    public static final String PYTHON_DOWNLOADS_LAST_MONTH = "downloads in the last month";
     
     // BigQuery constants
     public static final String BQ_DATASET_NAME = "package_downloads";

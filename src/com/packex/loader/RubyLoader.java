@@ -28,7 +28,7 @@ public class RubyLoader {
     }
     
     public static void main(String[] args) {
-        RubyLoader loader = new RubyLoader("gcloud");
+        RubyLoader loader = new RubyLoader("aws-sdk-v1");
         loader.load();
         RubyDownloadData data = loader.getDownloadData(); 
         

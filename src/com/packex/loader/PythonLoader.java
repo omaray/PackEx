@@ -67,7 +67,7 @@ public class PythonLoader {
     }
     
     public static void main(String[] args) {
-        PythonLoader loader = new PythonLoader("azure-nspkg");
+        PythonLoader loader = new PythonLoader("boto3");
         loader.loadFromHtml();
         PythonDownloadData data = loader.getDownloadData();
         

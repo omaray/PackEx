@@ -58,7 +58,7 @@ public class NodeManager implements LanguageManager {
     }
     
     public static void main(String[] args) {
-        NodeManager manager = new NodeManager("google", "gcloud", "cloud");
+        NodeManager manager = new NodeManager("microsoft", "azure-storage", "cloud");
         manager.saveData();
     }
 }

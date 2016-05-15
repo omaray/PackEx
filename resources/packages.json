@@ -15,35 +15,23 @@
         [
             {"language": "node", "category": "cloud", "name": "aws-sdk"},
             {"language": "ruby", "category": "cloud", "name": "aws-sdk"},
+            {"language": "ruby", "category": "cloud", "name": "aws-sdk-v1"},
             {"language": "php", "category": "cloud", "name": "aws/aws-sdk-php"},
-            {"language": "python", "category": "cloud", "name": "aws"}
+            {"language": "python", "category": "cloud", "name": "boto3"}
         ]
     },
     {
         "company": "microsoft",
         "packages":
         [
+            {"language": "node", "category": "cloud", "name": "azure"},
+            {"language": "node", "category": "cloud", "name": "azure-storage"},
+            {"language": "ruby", "category": "cloud", "name": "azure"},
+            {"language": "ruby", "category": "cloud", "name": "azure-storage"},
+            {"language": "php", "category": "cloud", "name": "microsoft/windowsazure"},
+            {"language": "php", "category": "cloud", "name": "microsoft/azure-storage"},
             {"language": "python", "category": "cloud", "name": "azure"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-authorization"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-batch"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-cdn"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-compute"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-logic"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-network"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-notificationhubs"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-redis"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-resource"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-scheduler"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-storage"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-web"},
-            {"language": "python", "category": "cloud", "name": "azure-mgmt-nspkg"},
-            {"language": "python", "category": "cloud", "name": "azure-batch"},
-            {"language": "python", "category": "cloud", "name": "azure-graphrbac"},
-            {"language": "python", "category": "cloud", "name": "azure-servicebus"},
-            {"language": "python", "category": "cloud", "name": "azure-storage"},
-            {"language": "python", "category": "cloud", "name": "azure-common"},
-            {"language": "python", "category": "cloud", "name": "azure-nspkg"}
+            {"language": "python", "category": "cloud", "name": "azure-storage"}
         ]
     }
  ]

@@ -18,6 +18,7 @@ public class Constants {
     public static final String NODE_DAY_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-day/%s";
     public static final String NODE_WEEK_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-week/%s";
     public static final String NODE_MONTH_URL_TEMPLATE = "https://api.npmjs.org/downloads/point/last-month/%s";
+    public static final String DOTNET_HTML_URL_TEMPLATE = "https://www.nuget.org/packages/%s/";
     
     // Python html constants
     public static final String PYTHON_CLASS_SEARCH = "nodot";

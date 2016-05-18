@@ -29,7 +29,6 @@ public class PackageExplorer {
             connector.createTable(Util.getDatasetName(), Util.getTableName(companyName));
             ArrayList<PackageInfo> packages = companyPackages.getPackages();
             for (PackageInfo pkg : packages) {
-                
                 try {
                     logger.log(Level.INFO, String.format("Saving the package info for %s in the %s language", 
                             pkg.getName().toUpperCase(), pkg.getLanguage().toUpperCase()));

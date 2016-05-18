@@ -34,6 +34,9 @@ public class LanguageManagerFactory {
         else if (language.toUpperCase().equals(Constants.PYTHON_LANGUAGE)) {
             manager = new PythonManager(companyName, packageName, category);
         }
+        else if (language.toUpperCase().equals(Constants.DOTNET_LANGUAGE)) {
+            manager = new DotnetManager(companyName, packageName, category);
+        }
         else {
             logger.log(Level.SEVERE, String.format("We don't support yet the language \"%s\"", language));
         }

@@ -7,6 +7,7 @@
             {"language": "ruby", "category": "cloud", "name": "gcloud"},
             {"language": "php", "category": "cloud", "name": "google/cloud"},
             {"language": "python", "category": "cloud", "name": "gcloud"},
+            {"language": "dotnet", "category": "cloud", "name": "Google.Storage.V1"},
             {"language": "node", "category": "apiary", "name": "googleapis"},
             {"language": "ruby", "category": "apiary", "name": "google-api-client"},
             {"language": "php", "category": "apiary", "name": "google/apiclient"},

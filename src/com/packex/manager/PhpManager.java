@@ -28,7 +28,7 @@ public class PhpManager implements LanguageManager{
     
     public void saveData() {
         PhpLoader loader = new PhpLoader(this.packageName);
-        loader.load();
+        loader.loadData();
         
         BigQueryConnector connector = BigQueryConnector.getInstance();
         connector.begin(this.datasetName, this.tableName);

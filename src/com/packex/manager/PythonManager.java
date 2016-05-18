@@ -28,7 +28,7 @@ public class PythonManager implements LanguageManager {
 
     public void saveData() {
         PythonLoader loader = new PythonLoader(this.packageName);
-        loader.loadFromHtml();
+        loader.loadData();
         
         BigQueryConnector connector = BigQueryConnector.getInstance();
         connector.begin(this.datasetName, this.tableName);

@@ -28,7 +28,7 @@ public class RubyManager implements LanguageManager {
     
     public void saveData() {
         RubyLoader loader = new RubyLoader(this.packageName);
-        loader.load();
+        loader.loadData();
         
         BigQueryConnector connector = BigQueryConnector.getInstance();
         connector.begin(this.datasetName, this.tableName);

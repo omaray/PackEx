@@ -5,7 +5,7 @@ import com.packex.Constants;
 import com.packex.connector.HttpConnector;
 import com.packex.model.pkgmgr.RubyDownloadData;
 
-public class RubyLoader {
+public class RubyLoader implements LanguageLoader {
     private String packageName;
     private String url;
     private RubyDownloadData data;
@@ -15,7 +15,7 @@ public class RubyLoader {
         this.url = String.format(Constants.RUBY_URL_TEMPLATE, this.packageName);
     }
     
-    public void load() {
+    public void loadData() {
         HttpConnector connector = HttpConnector.getInstance();
         String response = connector.get(this.url);
         
@@ -29,7 +29,7 @@ public class RubyLoader {
     
     public static void main(String[] args) {
         RubyLoader loader = new RubyLoader("google-api-client");
-        loader.load();
+        loader.loadData();
         RubyDownloadData data = loader.getDownloadData(); 
         
         System.out.println(data.getName());

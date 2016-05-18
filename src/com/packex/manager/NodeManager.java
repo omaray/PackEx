@@ -28,7 +28,7 @@ public class NodeManager implements LanguageManager {
 
     public void saveData() {
         NodeLoader loader = new NodeLoader(this.packageName);
-        loader.load();
+        loader.loadData();
         
         BigQueryConnector connector = BigQueryConnector.getInstance();
         connector.begin(this.datasetName, this.tableName);

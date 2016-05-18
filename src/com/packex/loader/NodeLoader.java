@@ -5,7 +5,7 @@ import com.packex.Constants;
 import com.packex.connector.HttpConnector;
 import com.packex.model.pkgmgr.NodeDownloadData;
 
-public class NodeLoader {
+public class NodeLoader implements LanguageLoader {
     private String packageName;
     private String dayURL;
     private String weekURL;
@@ -21,7 +21,7 @@ public class NodeLoader {
         this.monthURL = String.format(Constants.NODE_MONTH_URL_TEMPLATE, this.packageName);
     }
     
-    public void load() {
+    public void loadData() {
         Gson gson = new Gson();
         HttpConnector connector = HttpConnector.getInstance();
         
@@ -49,7 +49,7 @@ public class NodeLoader {
     
     public static void main(String[] args) {
         NodeLoader loader = new NodeLoader("googleapis");
-        loader.load();
+        loader.loadData();
         
         NodeDownloadData dayData = loader.getDayDownloadData();
         System.out.println(dayData.getDownloads());

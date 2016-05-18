@@ -20,7 +20,7 @@ import com.packex.parser.PythonHtmlParser;
 import com.packex.parser.ReleaseDeserializer;
 import com.packex.parser.ReleaseListDeserializer;
 
-public class PythonLoader {
+public class PythonLoader implements LanguageLoader {
     private static final Logger logger = Logger.getLogger(PythonLoader.class.getName());
     
     private String packageName;
@@ -34,7 +34,7 @@ public class PythonLoader {
         this.urlHtml = String.format(Constants.PYTHON_HTML_URL_TEMPLATE, this.packageName);
     }
     
-    public void loadFromHtml() {
+    public void loadData() {
         try {
             Document document = Jsoup.connect(this.urlHtml).get();
             
@@ -68,7 +68,7 @@ public class PythonLoader {
     
     public static void main(String[] args) {
         PythonLoader loader = new PythonLoader("google-api-python-client");
-        loader.loadFromHtml();
+        loader.loadData();
         PythonDownloadData data = loader.getDownloadData();
         
         System.out.println(data.getDayDownloads());

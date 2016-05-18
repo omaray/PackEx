@@ -26,6 +26,13 @@ public class Constants {
     public static final String PYTHON_DOWNLOADS_LAST_WEEK = "downloads in the last week";
     public static final String PYTHON_DOWNLOADS_LAST_MONTH = "downloads in the last month";
     
+    // Dotnet html constants
+    public static final String DOTNET_ID_SEARCH = "stats";
+    public static final String DOTNET_CLASS_SEARCH = "stat";
+    public static final String DOTNET_STAT_LABEL = "stat-label";
+    public static final String DOTNET_STAT_NUMBER = "stat-number";
+    public static final String DOTNET_DOWNLOADS_TEXT = "Downloads";
+    
     // BigQuery constants
     public static final String BQ_DATASET_NAME = "package_downloads";
     public static final String BQ_TABLE_NAME = "%s_data";

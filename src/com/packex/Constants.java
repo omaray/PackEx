@@ -9,6 +9,7 @@ public class Constants {
     public static final String NODE_LANGUAGE = "NODE";
     public static final String PHP_LANGUAGE = "PHP";
     public static final String PYTHON_LANGUAGE = "PYTHON";
+    public static final String DOTNET_LANGUAGE = "DOTNET";
     
     // Package management URL sites
     public static final String RUBY_URL_TEMPLATE = "https://rubygems.org/api/v1/gems/%s.json";

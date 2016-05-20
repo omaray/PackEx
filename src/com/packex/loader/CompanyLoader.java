@@ -15,8 +15,12 @@ public class CompanyLoader {
     private LinkedList<CompanyPackages> companyData;
     
     public void load() {
+        this.load(Constants.PACKAGES_FILE_PATH);
+    }
+    
+    public void load(String filePath) {
         Gson gson = new Gson();
-        String packagesInJson= Util.readFromFile(Constants.PACKAGES_FILE_PATH);
+        String packagesInJson= Util.readFromFile(filePath);
         CompanyPackages[] companyPackages = gson.fromJson(packagesInJson, CompanyPackages[].class);
         
         this.companyData = new LinkedList<CompanyPackages>(Arrays.asList(companyPackages));

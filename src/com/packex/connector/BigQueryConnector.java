@@ -23,15 +23,15 @@ import com.packex.Util;
 import com.google.cloud.bigquery.InsertAllRequest.Builder;
 
 public class BigQueryConnector {
-    private static final Logger logger = Logger.getLogger(BigQueryConnector.class.getName());
+    protected static final Logger logger = Logger.getLogger(BigQueryConnector.class.getName());
     
-    private static BigQueryConnector instance;
-    private String datasetName;
-    private String tableName;
-    private BigQuery bigQuery;
-    private Builder insertRequestBuilder;
+    protected static BigQueryConnector instance;
+    protected String datasetName;
+    protected String tableName;
+    protected BigQuery bigQuery;
+    protected Builder insertRequestBuilder;
     
-    private BigQueryConnector() {
+    protected BigQueryConnector() {
         this.bigQuery = BigQueryOptions.defaultInstance().service();
     }
     

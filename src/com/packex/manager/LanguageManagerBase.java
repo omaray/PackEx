@@ -16,8 +16,10 @@ public abstract class LanguageManagerBase implements LanguageManager {
     protected String category;
     protected String datasetName;
     protected String tableName;
+    protected BigQueryConnector connector;
     
-    public LanguageManagerBase(String company, String packageName, String category) {
+    public LanguageManagerBase(BigQueryConnector connector, String company, String packageName, String category) {
+        this.connector = connector;
         this.company = company;
         this.packageName = packageName;
         this.category = category;
@@ -28,9 +30,6 @@ public abstract class LanguageManagerBase implements LanguageManager {
     public void saveData() {
         LanguageLoader loader = this.getLanguageLoader();
         loader.loadData();
-        
-        BigQueryConnector connector = BigQueryConnector.getInstance();
-        connector.begin(this.datasetName, this.tableName);
         
         Map<String, Object> row = new HashMap<String, Object>();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -46,8 +45,7 @@ public abstract class LanguageManagerBase implements LanguageManager {
         // Download Fields
         this.putDownloadEntries(loader, row);
         
-        connector.addRow(row);
-        connector.commit();
+        this.connector.addRow(row);
     }
     
     abstract protected LanguageLoader getLanguageLoader();

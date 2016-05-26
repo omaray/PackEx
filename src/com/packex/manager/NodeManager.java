@@ -3,14 +3,16 @@ package com.packex.manager;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
+import com.packex.connector.BigQueryConnector;
 import com.packex.loader.NodeLoader;
 import com.packex.loader.LanguageLoader;
 import com.packex.model.pkgmgr.NodeDownloadData;
 
 public class NodeManager extends LanguageManagerBase {
     
-    public NodeManager(String company, String packageName, String category) {
-        super(company, packageName, category);
+    public NodeManager(BigQueryConnector connector, String company, String packageName, String category) {
+        super(connector, company, packageName, category);
     }
 
     @Override
@@ -36,7 +38,17 @@ public class NodeManager extends LanguageManagerBase {
     }
     
     public static void main(String[] args) {
-        NodeManager manager = new NodeManager("microsoft", "azure-storage", "cloud");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("microsoft");
+        
+        BigQueryConnector connector = BigQueryConnector.getInstance();
+        connector.createDataset(datasetName);
+        connector.createTable(datasetName, tableName);
+        connector.begin(datasetName, tableName);
+        
+        NodeManager manager = new NodeManager(connector, "microsoft", "azure-storage", "cloud");
         manager.saveData();
+        
+        connector.commit();
     }
 }

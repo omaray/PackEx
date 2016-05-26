@@ -3,14 +3,16 @@ package com.packex.manager;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
+import com.packex.connector.BigQueryConnector;
 import com.packex.loader.PythonLoader;
 import com.packex.loader.LanguageLoader;
 import com.packex.model.pkgmgr.PythonDownloadData;
 
 public class PythonManager extends LanguageManagerBase {
     
-    public PythonManager(String company, String packageName, String category) {
-        super(company, packageName, category);
+    public PythonManager(BigQueryConnector connector, String company, String packageName, String category) {
+        super(connector, company, packageName, category);
     }
 
     @Override
@@ -32,7 +34,17 @@ public class PythonManager extends LanguageManagerBase {
     }
  
     public static void main(String[] args) {
-        PythonManager pythonManager = new PythonManager("amazon", "aws", "cloud");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("amazon");
+        
+        BigQueryConnector connector = BigQueryConnector.getInstance();
+        connector.createDataset(datasetName);
+        connector.createTable(datasetName, tableName);
+        connector.begin(datasetName, tableName);
+        
+        PythonManager pythonManager = new PythonManager(connector, "amazon", "aws", "cloud");
         pythonManager.saveData();
+        
+        connector.commit();
     }
 }

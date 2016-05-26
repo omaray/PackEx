@@ -3,14 +3,16 @@ package com.packex.manager;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
+import com.packex.connector.BigQueryConnector;
 import com.packex.loader.DotnetLoader;
 import com.packex.loader.LanguageLoader;
 import com.packex.model.pkgmgr.DotnetDownloadData;
 
 public class DotnetManager extends LanguageManagerBase {
     
-    public DotnetManager(String company, String packageName, String category) {
-        super(company, packageName, category);
+    public DotnetManager(BigQueryConnector connector, String company, String packageName, String category) {
+        super(connector, company, packageName, category);
     }
     
     @Override
@@ -30,7 +32,17 @@ public class DotnetManager extends LanguageManagerBase {
     }
     
     public static void main(String[] args) {
-        DotnetManager manager = new DotnetManager("google", "Google.Apis.Datastore.v1beta1", "cloud");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("google");
+        
+        BigQueryConnector connector = BigQueryConnector.getInstance();
+        connector.createDataset(datasetName);
+        connector.createTable(datasetName, tableName);
+        connector.begin(datasetName, tableName);
+        
+        DotnetManager manager = new DotnetManager(connector, "google", "Google.Apis.Datastore.v1beta1", "cloud");
         manager.saveData();
+        
+        connector.commit();
     }
 }

@@ -3,14 +3,16 @@ package com.packex.manager;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
+import com.packex.connector.BigQueryConnector;
 import com.packex.loader.PhpLoader;
 import com.packex.loader.LanguageLoader;
 import com.packex.model.pkgmgr.PhpDownloadData;
 
 public class PhpManager extends LanguageManagerBase{
 
-    public PhpManager(String company, String packageName, String category) {
-        super(company, packageName, category);
+    public PhpManager(BigQueryConnector connector, String company, String packageName, String category) {
+        super(connector, company, packageName, category);
     }
 
     @Override
@@ -32,7 +34,17 @@ public class PhpManager extends LanguageManagerBase{
     }
     
     public static void main(String[] args) {
-        PhpManager manager = new PhpManager("google", "google/cloud", "cloud");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("google");
+        
+        BigQueryConnector connector = BigQueryConnector.getInstance();
+        connector.createDataset(datasetName);
+        connector.createTable(datasetName, tableName);
+        connector.begin(datasetName, tableName);
+        
+        PhpManager manager = new PhpManager(connector, "google", "google/cloud", "cloud");
         manager.saveData();
+        
+        connector.commit();
     }
 }

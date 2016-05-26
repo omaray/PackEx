@@ -3,14 +3,16 @@ package com.packex.manager;
 import java.util.Map;
 
 import com.packex.Constants;
+import com.packex.Util;
+import com.packex.connector.BigQueryConnector;
 import com.packex.loader.RubyLoader;
 import com.packex.loader.LanguageLoader;
 import com.packex.model.pkgmgr.RubyDownloadData;
 
 public class RubyManager extends LanguageManagerBase {
     
-    public RubyManager(String company, String packageName, String category) {
-        super(company, packageName, category);
+    public RubyManager(BigQueryConnector connector, String company, String packageName, String category) {
+        super(connector, company, packageName, category);
     }
 
     @Override
@@ -30,7 +32,17 @@ public class RubyManager extends LanguageManagerBase {
     }
     
     public static void main(String[] args) {
-        RubyManager rubyManager = new RubyManager("google", "gcloud", "cloud");
+        String datasetName = Util.getDatasetName();
+        String tableName = Util.getTableName("google");
+        
+        BigQueryConnector connector = BigQueryConnector.getInstance();
+        connector.createDataset(datasetName);
+        connector.createTable(datasetName, tableName);
+        connector.begin(datasetName, tableName);
+        
+        RubyManager rubyManager = new RubyManager(connector, "google", "gcloud", "cloud");
         rubyManager.saveData();
+        
+        connector.commit();
     }
 }
